@@ -7,7 +7,7 @@ import '../services/favorite_service.dart';
 class PostDetailScreen extends StatefulWidget {
   final Post post;
 
-  const PostDetailScreen({required this.post});
+  PostDetailScreen({required this.post});
 
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
@@ -54,7 +54,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       appBar: AppBar(
         title: Text(widget.post.title),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             context.pop();
           },
@@ -62,7 +62,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         actions: [
           _isLoading
               ? const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: CircularProgressIndicator(
                     color: Colors.white,
                   ),

@@ -5,7 +5,7 @@ import '../services/note_service.dart';
 class NoteDetailScreen extends StatefulWidget {
   final Note? note;
 
-  const NoteDetailScreen({this.note});
+  const NoteDetailScreen({Key? key, this.note}) : super(key: key);
 
   @override
   _NoteDetailScreenState createState() => _NoteDetailScreenState();
@@ -47,7 +47,7 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
   Future<void> _deleteNote() async {
     if (widget.note != null) {
       await _noteService.deleteNote(widget.note!);
-      Navigator.pop(context, true);
+      Navigator.pop(context, true); 
     }
   }
 
@@ -55,7 +55,7 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.note == null ? 'New Note' : 'Edit Note'),
+        title: Text(widget.note == null ? 'ახალი ჩანაწერი' : 'ჩანაწერის რედაქტირება'),
         actions: [
           if (widget.note != null)
             IconButton(
@@ -72,20 +72,20 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
             children: [
               TextFormField(
                 controller: _titleController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'სათაური'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
+                    return 'გთხოვთ შეიყვანოთ სათაური';
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: _bodyController,
-                decoration: const InputDecoration(labelText: 'Body'),
+                decoration: const InputDecoration(labelText: 'ტექსტი'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a body';
+                    return 'გთხოვთ შეიყვანოთ ტექსტი';
                   }
                   return null;
                 },
@@ -93,7 +93,7 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _saveNote,
-                child: const Text('Save'),
+                child: const Text('შენახვა'),
               ),
             ],
           ),

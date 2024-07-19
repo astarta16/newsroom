@@ -20,7 +20,8 @@ class _PostsScreenState extends State<PostsScreen> {
     super.initState();
     _fetchMorePosts();
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         _fetchMorePosts();
       }
     });
@@ -34,7 +35,8 @@ class _PostsScreenState extends State<PostsScreen> {
     });
 
     try {
-      List<Post> newPosts = await PostService().fetchPosts(_page * _limit, _limit);
+      List<Post> newPosts =
+          await PostService().fetchPosts(_page * _limit, _limit);
       setState(() {
         _page++;
         _posts.addAll(newPosts);
@@ -59,7 +61,7 @@ class _PostsScreenState extends State<PostsScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: _posts.isEmpty
-          ? const Center(child:  CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               controller: _scrollController,
               itemCount: _posts.length + 1,
@@ -67,12 +69,13 @@ class _PostsScreenState extends State<PostsScreen> {
                 if (index == _posts.length) {
                   return _isLoading
                       ? const Center(child: CircularProgressIndicator())
-                      : SizedBox.shrink();
+                      : const SizedBox.shrink();
                 }
 
                 Post post = _posts[index];
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
                     title: Text(post.title),
                     onTap: () {

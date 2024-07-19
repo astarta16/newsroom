@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('NEWS ROOM'),
+        title: const Text('NEWS ROOM'),
         actions: [
           IconButton(
             icon: Icon(

@@ -18,7 +18,6 @@ class FavoriteService with ChangeNotifier {
     final favoritePosts = await getFavoritePosts();
     _favoritePosts = favoritePosts;
     notifyListeners();
-    print('Initial favorites loaded: ${favoritePosts.length} items');
   }
 
   Future<List<Post>> getFavoritePosts() async {
@@ -36,8 +35,7 @@ class FavoriteService with ChangeNotifier {
     _favoritePosts.add(post);
     final favoritePostsString = jsonEncode(_favoritePosts);
     await prefs.setString(_favoritesKey, favoritePostsString);
-    notifyListeners(); 
-    print('Added favorite: ${post.title}');
+    notifyListeners();
   }
 
   Future<void> removeFavoritePost(Post post) async {
@@ -45,8 +43,7 @@ class FavoriteService with ChangeNotifier {
     _favoritePosts.removeWhere((favoritePost) => favoritePost.id == post.id);
     final favoritePostsString = jsonEncode(_favoritePosts);
     await prefs.setString(_favoritesKey, favoritePostsString);
-    notifyListeners(); 
-    print('Removed favorite: ${post.title}');
+    notifyListeners();
   }
 
   Future<bool> isFavorite(Post post) async {

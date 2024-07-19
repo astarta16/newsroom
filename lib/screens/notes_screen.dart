@@ -27,7 +27,9 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('ჩემი ჩანაწერები'),
+      ),
       body: FutureBuilder<List<Note>>(
         future: _notesFuture,
         builder: (context, snapshot) {
@@ -36,7 +38,7 @@ class _NotesScreenState extends State<NotesScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child:  Text('NOtes is empty'));
+            return const Center(child: Text('ჩანაწერი არ არსებობს'));
           } else {
             final notes = snapshot.data!;
             return ListView.builder(
@@ -47,9 +49,9 @@ class _NotesScreenState extends State<NotesScreen> {
                   margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
                     title: Text(note.title),
+                    subtitle: Text(note.body), 
                     onTap: () async {
-                      final result = await GoRouter.of(context)
-                          .push('/note_detail', extra: note);
+                      final result = await GoRouter.of(context).push('/note_detail', extra: note);
                       if (result == true) {
                         _refreshNotes();
                       }

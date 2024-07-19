@@ -4,6 +4,7 @@ import 'screens/post_detail_screen.dart';
 import 'screens/note_detail_screen.dart';
 import 'models/post.dart';
 import 'models/note.dart';
+import 'screens/notes_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/posts',
@@ -22,7 +23,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/notes',
-      builder: (context, state) => const MainScreen(tabIndex: 2),
+      builder: (context, state) => NotesScreen(),
     ),
     GoRoute(
       path: '/post_detail',
