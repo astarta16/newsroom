@@ -20,8 +20,7 @@ class _PostsScreenState extends State<PostsScreen> {
     super.initState();
     _fetchMorePosts();
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         _fetchMorePosts();
       }
     });
@@ -35,14 +34,13 @@ class _PostsScreenState extends State<PostsScreen> {
     });
 
     try {
-      List<Post> newPosts =
-          await PostService().fetchPosts(_page * _limit, _limit);
+      List<Post> newPosts = await PostService().fetchPosts(_page * _limit, _limit);
       setState(() {
         _page++;
         _posts.addAll(newPosts);
       });
     } catch (error) {
-      print(error);
+      debugPrint(error.toString());
     }
 
     setState(() {
@@ -74,8 +72,7 @@ class _PostsScreenState extends State<PostsScreen> {
 
                 Post post = _posts[index];
                 return Card(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
                     title: Text(post.title),
                     onTap: () {

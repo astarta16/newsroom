@@ -28,7 +28,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     setState(() {
       _isFavorite = isFavorite;
       _isLoading = false;
-      print('Post is favorite: $_isFavorite');
     });
   }
 
@@ -44,7 +43,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     setState(() {
       _isFavorite = !_isFavorite;
       _isLoading = false;
-      print('Toggled favorite: $_isFavorite');
+      debugPrint('Toggled favorite: $_isFavorite');
     });
   }
 
